@@ -49,13 +49,11 @@ android {
 }
 
 android.libraryVariants
-afterEvaluate {
-    publishing {
-        publications {
-            maven(MavenPublication) {
-                artifact "build/libs/SmartLocation-RxJavaExtension-${version}.aar"
-                artifactId 'rx'
-            }
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifact "/SmartLocation-RxJavaExtension-${version}.aar"
+            artifactId 'rx'
         }
     }
 }

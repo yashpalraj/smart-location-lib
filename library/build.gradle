@@ -48,16 +48,14 @@ android {
 }
 
 android.libraryVariants
-afterEvaluate {
     publishing {
         publications {
             maven(MavenPublication) {
-                artifact "build/libs/SmartLocation-${version}.aar"
+                artifact "/SmartLocation-${version}.aar"
                 artifactId 'library'
             }
         }
     }
-}
 
 def isReleaseBuild() {
     return version.contains("SNAPSHOT") == false
