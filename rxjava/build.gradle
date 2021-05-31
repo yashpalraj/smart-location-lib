@@ -52,7 +52,7 @@ android.libraryVariants
 publishing {
     publications {
         maven(MavenPublication) {
-            artifact "/SmartLocation-RxJavaExtension-${version}.aar"
+            //artifact "/SmartLocation-RxJavaExtension-${version}.aar"
             artifactId 'rx'
         }
     }
