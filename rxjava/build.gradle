@@ -1,7 +1,6 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven { url "https://jitpack.io" }
     }
 }
 
@@ -17,9 +16,6 @@ group 'io.nlopez.smartlocation'
 dependencies {
     repositories {
         mavenCentral()
-        jcenter()
-        google()
-        maven { url "https://jitpack.io" }
         maven { url "https://maven.google.com" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
@@ -53,11 +49,13 @@ android {
 }
 
 android.libraryVariants
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifact "build/libs/SmartLocation-RxJavaExtension-${version}.aar"
-            artifactId 'rx'
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                artifact "build/libs/SmartLocation-RxJavaExtension-${version}.aar"
+                artifactId 'rx'
+            }
         }
     }
 }
