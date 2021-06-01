@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.smartLocationVersion = "3.3.72"
+    ext.smartLocationVersion = "3.3.73"
 
     // Common dependencies
     ext.robolectricVersion = "3.1"
