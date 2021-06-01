@@ -53,7 +53,7 @@ publishing {
     publications {
         maven(MavenPublication) {
             //artifact "/SmartLocation-RxJavaExtension-${version}.aar"
-            artifact("$buildDir/SmartLocation-RxJavaExtension-${version}.aar")
+            artifact("$buildDir/outputs/aar/rxjava-debug.aar")
             artifactId 'rx'
         }
     }
