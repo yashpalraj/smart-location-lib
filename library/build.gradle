@@ -29,7 +29,7 @@ dependencies {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '26.1.1'
 
     buildTypes {
         defaultConfig {
@@ -51,7 +51,11 @@ android.libraryVariants
 publishing {
     publications {
         maven(MavenPublication) {
-            artifact "build/libs/SmartLocation-${version}.aar"
+            /**
+             * Provided by original dev, so keeping it here
+             */
+            //artifact "build/libs/SmartLocation-${version}.aar"
+            artifact("$buildDir/outputs/aar/library-release.aar")
             artifactId 'library'
         }
     }

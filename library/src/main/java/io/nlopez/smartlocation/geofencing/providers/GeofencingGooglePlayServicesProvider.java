@@ -185,31 +185,39 @@ public class GeofencingGooglePlayServicesProvider implements GeofencingProvider,
     public void onConnected(Bundle bundle) {
         logger.d("onConnected");
 
-        // TODO wait until the connection is done and retry
-        if (client.isConnected()) {
-            if (geofencesToAdd.size() > 0) {
-                if (ActivityCompat.checkSelfPermission(context,
-                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
+        //TODO wait until the connection is done and retry
+        try {
+            if (client.isConnected()) {
+                if (geofencesToAdd.size() > 0) {
+                    if (ActivityCompat.checkSelfPermission(context,
+                            Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+                    try {
+                        LocationServices.GeofencingApi.addGeofences(client, geofencesToAdd, pendingIntent);
+                        geofencesToAdd.clear();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-                LocationServices.GeofencingApi.addGeofences(client, geofencesToAdd, pendingIntent);
-                geofencesToAdd.clear();
-            }
 
-            if (geofencesToRemove.size() > 0) {
-                LocationServices.GeofencingApi.removeGeofences(client, geofencesToRemove);
-                geofencesToRemove.clear();
+                if (geofencesToRemove.size() > 0) {
+                    LocationServices.GeofencingApi.removeGeofences(client, geofencesToRemove);
+                    geofencesToRemove.clear();
+                }
             }
-        }
-        if (googlePlayServicesListener != null) {
-            googlePlayServicesListener.onConnected(bundle);
+            if (googlePlayServicesListener != null) {
+                googlePlayServicesListener.onConnected(bundle);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
